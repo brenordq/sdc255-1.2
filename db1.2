@@ -1,0 +1,43 @@
+public class Car
+{
+    // Auto-implemented property for Car's Make
+    // The C# compiler automatically creates a private backing field.
+    public string Make { get; set; }
+
+    // Auto-implemented property for Car's Model
+    public string Model { get; set; }
+
+    // Auto-implemented property for Car's Year
+    // Here, we can add a private 'set' to make it settable only within the class
+    // or through the constructor, making it effectively read-only from outside.
+    public int Year { get; private set; } 
+
+    // Constructor to set initial values
+    public Car(string make, string model, int year)
+    {
+        Make = make;
+        Model = model;
+        Year = year; // This uses the private 'set' for Year
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // 1. Create a Car object
+        Car myCar = new Car("Honda", "Civic", 2020);
+
+        // 2. Use the 'get' method to read values
+        Console.WriteLine($"My car is a {myCar.Year} {myCar.Make} {myCar.Model}.");
+
+        // 3. Use the 'set' method to change values
+        myCar.Make = "Toyota";
+        myCar.Model = "Corolla";
+
+        // 4. Read the updated values
+        Console.WriteLine($"Now my car is a {myCar.Year} {myCar.Make} {myCar.Model}.");
+
+        // myCar.Year = 2022; // This would cause a compile-time error because 'set' is private
+    }
+}
